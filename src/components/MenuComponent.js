@@ -4,6 +4,7 @@
 import React , {Component} from 'react';
 import {Card,CardImg,CardTitle,CardBody,CardImgOverlay,CardText} from "reactstrap";
 
+import Dishdetail from "./DishdetailComponent";
 
 class Menu extends Component{
   constructor(props){
@@ -20,7 +21,7 @@ class Menu extends Component{
       )
   }
 
-  renderDish(dish){
+ /* renderDish(dish){
     if(dish!=null){
       return(
         <div>
@@ -32,9 +33,10 @@ class Menu extends Component{
             </CardBody>
         </Card>
         </div>
+
         )
     }
-  }
+  }*/
   render(){
     const menu = this.props.dishes.map((dish) => {
       return(
@@ -56,11 +58,14 @@ class Menu extends Component{
         {menu}
         
       </div> 
-      <div className="row" >
-      <div className="col-12 md-5 m-1">
-        {this.renderDish(this.state.selectedDish)}
-      </div>
-      </div>
+      {/*    <div className="row" >
+                <div className="col-12 col-md-5 m-1">
+                      {this.renderDish(this.state.selectedDish)}
+                </div>
+            </div>     
+        */}
+        
+          <div className="row">{<Dishdetail selectedDish={this.state.selectedDish} />}</div>
       </div>
     );
   }
