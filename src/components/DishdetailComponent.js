@@ -31,7 +31,7 @@ class Dishdetail extends Component{
 	renderComment(comments){
 		if(comments!=null){
 			const comment = comments.map((cmt)=>{
-					var date = cmt.date.split("T");
+					//var date = cmt.date.split("T");
 					//{console.log(date);}
 				
 					return(
@@ -39,7 +39,7 @@ class Dishdetail extends Component{
 							<div key={cmt.id} tag="li">
 								
 								<p >{cmt.comment}</p>
-								<p>--{cmt.author} , {date[0]}</p>
+								<p>--{cmt.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</p>
 							</div>
 						
 						);
