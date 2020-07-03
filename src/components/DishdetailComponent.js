@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Card,CardImg,CardTitle,CardBody,CardImgOverlay,CardText} from 'reactstrap';
-
+import {Breadcrumb,BreadcrumbItem} from "reactstrap";
+import {Link} from "react-router-dom";
 
 function RenderDish({selectedDish}){
 		if(selectedDish!=null){
@@ -18,6 +19,7 @@ function RenderDish({selectedDish}){
 		);
 	}else{
 		return(
+
 			<div></div>
 		)
 	}
@@ -36,7 +38,8 @@ function RenderComment({comments}){
 							<div key={cmt.id} tag="li">
 								
 								<p >{cmt.comment}</p>
-								<p>--{cmt.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</p>
+						
+		<p>--{cmt.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</p>
 							</div>
 						
 						);
@@ -65,9 +68,15 @@ function DishDetail(props){
 		}
 		return(
 					<div className="container">
+						<div className="row m-1" >
+								<Breadcrumb>
+										<BreadcrumbItem><Link to ="/menu">Menu</Link></BreadcrumbItem>
+										<BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
+								</Breadcrumb>
+						</div>
 						<div className="row">
 							<RenderDish selectedDish={selectedDish} />
-							<RenderComment comments={selectedDish.comments} />
+							<RenderComment comments={props.comments} />
 									
 								
 						</div>
