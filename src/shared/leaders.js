@@ -29,7 +29,7 @@ export const LEADERS = [
     {
       id: 3,
       name: 'Alberto Somayya',
-      image: '/assets/images/chef.png',
+      image: '/assets/images/alberto.png',
       designation: 'Executive Chef',
       abbr: 'EC',
       featured: true,
