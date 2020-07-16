@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {Button,Label,Row,Col} from "reactstrap";
 import {Modal,ModalBody,ModalHeader} from "reactstrap";
 import {LocalForm,Control,Errors} from "react-redux-form";
-
+import  Loading from "./LoadingComponent";
 const minlength = (len) => (val) => val&&val.length>len;
 const maxlength = (len) => (val) => !(val)||val.length<=len;
 class CommentForm extends Component{
@@ -159,9 +159,24 @@ function RenderComment({comments,addComment,dishId}){
 
 
 function DishDetail(props){
-		const selectedDish = props.selectedDish;
-
-		if(selectedDish==null){
+		
+	if(props.isLoading){
+        return(
+            <div className="container">
+                <div className="col-12">
+                    <Loading />
+                </div>
+            </div>
+        )
+    }
+    else if(props.errMess){
+        return(
+            <div>
+                <h4>{props.errMess}</h4>
+            </div>
+        )
+    }
+	else if(props.selectedDish==null){
 			return(
 			<div></div>
 			)
@@ -171,12 +186,12 @@ function DishDetail(props){
 						<div className="row m-1" >
 								<Breadcrumb>
 										<BreadcrumbItem><Link to ="/menu">Menu</Link></BreadcrumbItem>
-										<BreadcrumbItem active>{selectedDish.name}</BreadcrumbItem>
+										<BreadcrumbItem active>{props.selectedDish.name}</BreadcrumbItem>
 								</Breadcrumb>
 						</div>
 						<div className="row">
-							<RenderDish selectedDish={selectedDish} />
-							<RenderComment comments={props.comments} dishId={selectedDish.id} 
+							<RenderDish selectedDish={props.selectedDish} />
+							<RenderComment comments={props.comments} dishId={props.selectedDish.id} 
 								addComment={props.addComment} />
 									
 								
