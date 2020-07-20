@@ -7,6 +7,7 @@ import {Button,Label,Row,Col} from "reactstrap";
 import {Modal,ModalBody,ModalHeader} from "reactstrap";
 import {LocalForm,Control,Errors} from "react-redux-form";
 import  Loading from "./LoadingComponent";
+import {baseUrl} from "../shared/baseUrl";
 const minlength = (len) => (val) => val&&val.length>len;
 const maxlength = (len) => (val) => !(val)||val.length<=len;
 class CommentForm extends Component{
@@ -105,7 +106,7 @@ function RenderDish({selectedDish}){
 			return(
 				<div className ="col-12 col-md-5 m-1">
 				<Card key={selectedDish.id}>
-					<CardImg width="100%" src={selectedDish.image} alt={selectedDish.name}>
+					<CardImg width="100%" src={baseUrl+selectedDish.image} alt={selectedDish.name}>
 					</CardImg>
 					<CardBody>
 						<CardTitle>{selectedDish.name}</CardTitle>
@@ -151,7 +152,7 @@ function RenderComment({comments,addComment,dishId}){
 			)
 		}else{
 			return(
-				<div></div>
+			<div></div>
 			)
 		}
 		
@@ -192,7 +193,8 @@ function DishDetail(props){
 						<div className="row">
 							<RenderDish selectedDish={props.selectedDish} />
 							<RenderComment comments={props.comments} dishId={props.selectedDish.id} 
-								addComment={props.addComment} />
+								addComment={props.addComment} 
+								  />
 									
 								
 						</div>
