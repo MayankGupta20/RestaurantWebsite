@@ -7,9 +7,11 @@ export const Comments = (state={
 	switch(action.type){
 		case ACTION_TYPE.ADD_COMMENT:
 			const comment = action.payload;
-			comment.id=state.comments.length;
-			comment.date = new Date().toISOString();
+				//server will provide id to comment after post
+			//comment.id=state.comments.length;
+			//comment.date = new Date().toISOString();
 			console.log("Comment: ", comment);
+			//this will reflect changes in state
 			return {...state,comments:state.comments.concat(comment)};
 
 		case ACTION_TYPE.ADD_COMMENTS:

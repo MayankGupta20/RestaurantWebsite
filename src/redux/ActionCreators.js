@@ -96,18 +96,53 @@ export const addPromos = (promos) =>({
 //leaders
 
 //comments
-export const addComment = (DishId,rating,author,comment) => ({
+export const addComment = (comment) => ({
 		
 	type : ActionTypes.ADD_COMMENT,
-	payload:{
-	dishId:DishId,
-	rating:rating,
-	author:author,
-	comment:comment
-	}
+	payload:comment
 
 
 } );
+
+//postComment thunk to post comment to server
+export const postComment = (DishId,rating,author,comment) => (dispatch) =>{
+	const newComment = {
+		dishId:DishId,
+		rating:rating,
+		author:author,
+		comment:comment
+	}
+	newComment.date = new Date().toISOString();
+	fetch(baseUrl+'comments',{
+		method:"POST",
+		body:JSON.stringify(newComment),
+		headers:{
+			"Content-Type":"application/json",
+		},
+		credentials:"same-origin"
+	})
+		.then(response=>{
+			if(response.ok){
+				return response
+			}
+			else{
+				var error = new Error('Error '+response.status+':'+response.statusText);
+				error.response=response;
+				throw(error);
+			}
+		},
+		error => {
+			//var error = new Error(error.message);
+			throw error;
+		}
+	
+		)
+	.then(response=>response.json())
+	.then(data=>dispatch(addComment(data)))
+	.catch(error =>  { console.log('post comments', error.message); 
+		alert('Your comment could not be posted\nError: '+error.message); });
+
+}
 
 //export const fetchComments = () => (dispatch) => dispatch(addComments(COMMENTS));
 	//dispatch(addComments(COMMENTS));

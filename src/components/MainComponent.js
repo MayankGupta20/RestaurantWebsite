@@ -17,11 +17,11 @@ import {connect} from 'react-redux';
 import About from "./AboutComponent";
 import {actions} from 'react-redux-form';
 //importing action creator addComment
-import {addComment,fetchDishes,fetchPromos,fetchComments} from '../redux/ActionCreators';
+import {postComment,fetchDishes,fetchPromos,fetchComments} from '../redux/ActionCreators';
 
 const mapDispatchToProps=(dispatch) =>{
   return{
-    addComment : (dishId,rating,author,comment) => dispatch(addComment(dishId,rating,author,comment)),
+    postComment : (dishId,rating,author,comment) => dispatch(postComment(dishId,rating,author,comment)),
     fetchDishes : () => {dispatch(fetchDishes())},
     resetFeedbackForm : () => {dispatch(actions.reset('feedback'))},
     fetchPromos : () =>{dispatch(fetchPromos())},
@@ -59,7 +59,7 @@ class Main extends Component{
     return(
       <DishDetail selectedDish={this.props.dishes.dishes.filter((dish) => dish.id===parseInt(match.params.dishId,10))[0]} 
          comments={this.props.comments.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
-         addComment={this.props.addComment}
+         postComment={this.props.postComment}
          commentErrMess ={this.props.comments.errMess}
          isLoading = {this.props.dishes.isLoading}
          errmess={this.props.dishes.errmess} />
