@@ -125,7 +125,12 @@ function RenderDish({selectedDish}){
 	
 	}
 
-function RenderComment({comments,addComment,dishId}){
+function RenderComment({comments,addComment,dishId,commentErrMess}){
+		if(commentErrMess){
+			return(
+			<div>{commentErrMess}</div>
+			)
+		}
 		if(comments!=null){
 			const comment = comments.map((cmt)=>{
 					//var date = cmt.date.split("T");
@@ -151,6 +156,7 @@ function RenderComment({comments,addComment,dishId}){
 				</div>
 			)
 		}else{
+
 			return(
 			<div></div>
 			)
@@ -170,10 +176,10 @@ function DishDetail(props){
             </div>
         )
     }
-    else if(props.errMess){
+    else if(props.errmess){
         return(
             <div>
-                <h4>{props.errMess}</h4>
+                <h4>{props.errmess}</h4>
             </div>
         )
     }
@@ -193,7 +199,7 @@ function DishDetail(props){
 						<div className="row">
 							<RenderDish selectedDish={props.selectedDish} />
 							<RenderComment comments={props.comments} dishId={props.selectedDish.id} 
-								addComment={props.addComment} 
+								addComment={props.addComment} commentErrMess={props.commentErrMess} 
 								  />
 									
 								
