@@ -3,9 +3,10 @@ import {Card,CardImg,CardTitle,CardBody,CardImgOverlay,CardText,Breadcrumb,Bread
 import {Link} from "react-router-dom";
 import Loading from "./LoadingComponent";
 import {baseUrl} from '../shared/baseUrl';
+import {  Fade } from 'react-animation-components';
 function RenderMenuItem({dish}){
   return(
-      
+      <Fade in>
         <Card key={dish.id}>
           <Link to={`/menu/${dish.id}`}>
             <CardImg width="100%" src={baseUrl+dish.image} alt={dish.name}></CardImg>
@@ -14,7 +15,7 @@ function RenderMenuItem({dish}){
             </CardImgOverlay>
           </Link>
         </Card>
-
+        </Fade>
     
 
   );
@@ -80,8 +81,9 @@ const Menu = (props)=>{
               </Breadcrumb>
           </div>
           <div className="row">
+              
                 {menu}
-        
+              
           </div> 
       {/*    <div className="row" >
                 <div className="col-12 col-md-5 m-1">

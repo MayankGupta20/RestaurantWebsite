@@ -19,6 +19,8 @@ import {actions} from 'react-redux-form';
 //importing action creator addComment
 import {postComment,fetchDishes,fetchPromos,fetchComments} from '../redux/ActionCreators';
 
+import {TransitionGroup,CSSTransition} from 'react-transition-group';
+
 const mapDispatchToProps=(dispatch) =>{
   return{
     postComment : (dishId,rating,author,comment) => dispatch(postComment(dishId,rating,author,comment)),
@@ -86,7 +88,9 @@ class Main extends Component{
 
           {/*<Menu  dishes={this.state.dishes} onClick={(dishId)=> this.onDishSelect(dishId)}/>
           <DishDetail selectedDish={this.state.dishes.filter((dish)=> dish.id===this.state.selectedDish)[0]} />*/}
-          <Switch>
+           <TransitionGroup>
+            <CSSTransition key={this.props.location.key} classNames="page" timeout={400}>
+          <Switch location={this.props.location}>
             <Route path="/home" component={HomePage} />
             <Route exact path="/menu" component={() => <Menu dishes={this.props.dishes} />} />
             <Route path="/menu/:dishId" component={DishWithId} />
@@ -94,6 +98,8 @@ class Main extends Component{
             <Route path="/aboutus" component={()=> <About leaders={this.props.leaders} />} />
             <Redirect to="/home" />
           </Switch>
+          </CSSTransition>
+          </TransitionGroup>
           <Footer />
     </div>
   );

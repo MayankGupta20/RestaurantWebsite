@@ -8,6 +8,7 @@ import {Modal,ModalBody,ModalHeader} from "reactstrap";
 import {LocalForm,Control,Errors} from "react-redux-form";
 import  Loading from "./LoadingComponent";
 import {baseUrl} from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 const minlength = (len) => (val) => val&&val.length>len;
 const maxlength = (len) => (val) => !(val)||val.length<=len;
 class CommentForm extends Component{
@@ -105,6 +106,11 @@ function RenderDish({selectedDish}){
 		if(selectedDish!=null){
 			return(
 				<div className ="col-12 col-md-5 m-1">
+					<FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
 				<Card key={selectedDish.id}>
 					<CardImg width="100%" src={baseUrl+selectedDish.image} alt={selectedDish.name}>
 					</CardImg>
@@ -113,6 +119,7 @@ function RenderDish({selectedDish}){
 						<CardText>{selectedDish.description}</CardText>
 					</CardBody>
 				</Card>
+				</FadeTransform>
 				</div>
 		);
 	}else{
@@ -137,21 +144,23 @@ function RenderComment({comments,postComment,dishId,commentErrMess}){
 					//{console.log(date);}
 				
 					return(
-						
+						<Fade in>
 							<div key={cmt.id} tag="li">
 								
 								<p >{cmt.comment}</p>
 						
 		<p>--{cmt.author} , {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(cmt.date)))}</p>
 							</div>
-						
+							</Fade>
 						);
 					}
 				);
 			return(
 				<div className="col-12 col-md-5 m-1">
 					<h4>Comments</h4>
+					<Stagger in>
 					{comment}
+					</Stagger>
 					<CommentForm dishId={dishId} postComment={postComment}/>
 				</div>
 			)
