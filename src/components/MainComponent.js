@@ -2,7 +2,7 @@ import React from 'react';
 import {Component} from 'react';
 
 
-import {Navbar,NavbarBrand} from 'reactstrap';
+
 import Menu from "./MenuComponent";
 import DishDetail from "./DishdetailComponent";
 
@@ -46,10 +46,7 @@ const mapStatetoProps= state =>{
 }
 
 class Main extends Component{
-  constructor(props){
-    super(props);
 
-  };
 
   componentDidMount(){
     this.props.fetchDishes();

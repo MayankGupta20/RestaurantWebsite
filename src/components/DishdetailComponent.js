@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import {Card,CardImg,CardTitle,CardBody,CardImgOverlay,CardText} from 'reactstrap';
+import {Card,CardImg,CardTitle,CardBody,CardText} from 'reactstrap';
 import {Breadcrumb,BreadcrumbItem} from "reactstrap";
 import {Link} from "react-router-dom";
 
-import {Button,Label,Row,Col} from "reactstrap";
+import {Button,Label,Row} from "reactstrap";
 import {Modal,ModalBody,ModalHeader} from "reactstrap";
 import {LocalForm,Control,Errors} from "react-redux-form";
 import  Loading from "./LoadingComponent";

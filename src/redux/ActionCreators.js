@@ -23,8 +23,8 @@ export const fetchDishes = () => (dispatch) =>{
 				}
 			},
 			error => {
-				var error = new Error(error.message);
-				throw error;
+				var errmessage = new Error(error.message);
+				throw errmessage;
 			}
 			
 		)
@@ -69,8 +69,8 @@ export const fetchPromos = () => (dispatch) =>{
 				}
 			},
 			error => {
-				var error = new Error(error.message);
-				throw error;
+				var errmessage = new Error(error.message);
+				throw errmessage;
 			}
 			
 		)
@@ -159,8 +159,8 @@ export const fetchComments= ()=>(dispatch) =>{
 			}
 		},
 		error => {
-			var error = new Error(error.message);
-			throw error;
+			var errmessage = new Error(error.message);
+			throw errmessage;
 		}
 		
 	)
@@ -196,8 +196,8 @@ export const fetchLeaders = () => (dispatch) =>{
 				}
 			},
 			error => {
-				var error = new Error(error.message);
-				throw error;
+				var errmessage = new Error(error.message);
+				throw errmessage;
 			}
 			
 		)

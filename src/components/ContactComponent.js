@@ -3,7 +3,7 @@ import { Breadcrumb, BreadcrumbItem,
             Button, Label,Col,Row} from 'reactstrap';
 import {Link} from "react-router-dom";
 //import {Control , LocalForm ,Errors} from 'react-redux-form';
-import {Control , Form ,Errors,actions} from 'react-redux-form';
+import {Control , Form ,Errors} from 'react-redux-form';
 
     const required = (val) => val &&  val.length;
     const minlength = (len) => (val) => val&&val.length>=len;
@@ -61,7 +61,7 @@ class Contact extends Component{
 					<div className="btn-group ">
 						<a type="button" className="btn btn-primary" href="tel:+85212345678"><i class="fa fa-phone" aria-hidden="true"></i> Call</a>
 
-						<a type="button" className="btn btn-info"><i class="fa fa-skype" aria-hidden="true"></i> Skype</a>
+						<a type="button" className="btn btn-info" href="#"><i class="fa fa-skype" aria-hidden="true"></i> Skype</a>
 
 						<a type="button" className="btn btn-success" href="mailto:confusion@food.net"><i class="fa fa-envelope" aria-hidden="true"></i> Email</a>
 					</div>
